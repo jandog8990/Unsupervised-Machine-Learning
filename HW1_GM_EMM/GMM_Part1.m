@@ -1,59 +1,20 @@
+%% Generate random data
+A = min(X); B = max(X); m = 1; n = 2;
+mu1 = unifrnd(A, B, m, n);
+mu2 = unifrnd(A, B, m, n);
+mu3 = unifrnd(A, B, m, n);
 
-% clc
-% clear
-% close all
-
-
-%% 2 GMM Function.
-
-% M = number of column vectors.
-% D = dimension representing Mu_i, 1 <= i <= M.
-% A set of matrices containing the corresponding covariance functions.
-% And a vector pi of mixture values.
-
-% The input should also contain an arbitrary set of vectors in the space.
-% The corresponding output is their probability density
-% value according to the Gaussian Mixture distribution.
-
-
-%% 3 Gaussian Distribution
-
-% In order to produce artificial data, construct a function
-% whose inputs are a D dimensional vector (mean),
-% a D dimensional matrix (covariance),
-% and a scalar N.
-
-% The output will produce N data according to
-% the corresponding Gaussian distribution.
-
-% It is recommended to use a circular Gaussian distribution and
-% a linear transformation according to the Gaussian parameters.
-
-% Using this distribution, generate a 2-dimensional
-% distribution with 400 data, with the parameters:
-
-mu1 = [1 2];
-sigma1 = [3 1; 1 2];
-mu2 = [-1 -2];
-sigma2 = [2 0; 0 1];
-mu3 = [3 -3];
-sigma3 = [1 0.3; 0.3 1];
-
-%% Create the random means
-a = 0; b = 5;
-p = a + (b-a)*rand();
-disp(p);
-mu1 = mu1 + p;
-mu2 = mu2 - p;
-mu3 = mu3 + p;
-
-%% Update the random sigmas
-a = 0; b = 3;
-p = a + (b-a)*rand();
-disp(p);
-sigma1 = sigma1 + p;
-sigma2 = sigma2 - p;
-sigma3 = sigma3 + p;
+A = 0.1; B = 4; m = 2; n = 2;
+p1 = A+(B-A)*rand();
+p2 = A+(B-A)*rand();
+p3 = A+(B-A)*rand();
+sigma1 = cov(ZZtop/1.8-p1);
+sigma2 = cov(ZZtop/2.0+p2);
+sigma3 = cov(ZZtop/2.1-p3);
+% disp(cov1);
+% A1 = unifrnd(A, B, m, n); sigma1 = A1'*A1;
+% A2 = unifrnd(A, B, m, n); sigma2 = A2'*A2;
+% A3 = unifrnd(A, B, m, n); sigma3 = A3'*A3;
 
 
 disp("Sigma 1:");
@@ -75,9 +36,9 @@ PIC = [0.33 0.33 0.33];
 
 % Create a gmdistribution object by using the gmditribution function.
 % By default, the function creates an equal proportion mixture.
-gm1 = gmdistribution(mu1,sigma1);
-gm2 = gmdistribution(mu2,sigma2);
-gm3 = gmdistribution(mu3,sigma3);
+gm1 = gmdistribution(mu1, sigma1);
+gm2 = gmdistribution(mu2, sigma2);
+gm3 = gmdistribution(mu3, sigma3);
 
 %% Generate PDFs from the GMM objects
 
