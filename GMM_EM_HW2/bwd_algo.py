@@ -29,8 +29,8 @@ def bwd_algo(A, B, V):
     # Initialize array sizes for time and hidden state space
     T = V.shape[0];
     M = A.shape[0];
-    print("Time T = " + str(T))
-    print("H-states = " + str(M));
+#    print("Time T = " + str(T))
+#    print("H-states = " + str(M));
     
     # Set the first beta probabilities 
     # NOTE: Due to the conditional probability p(xn, zn | zn-1)

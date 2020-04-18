@@ -15,6 +15,7 @@ import numpy as np
 from fwd_algo import fwd_algo
 from bwd_algo import bwd_algo
 from baum_welch import baum_welch
+from viterbi import viterbi
 
 # Create the A and B matrices
 A = np.array([[0.54, 0.46], [0.49, 0.51]]);
@@ -40,6 +41,7 @@ init_dist = np.array([0.5, 0.5])
 alpha = fwd_algo(A, B, init_dist, V);
 print("Final HMM FWD State Probabilities:");
 print("alpha.shape = " + str(alpha.shape));
+print("\n");
 #print(alpha);
 
 # ------------------------
@@ -48,10 +50,11 @@ print("alpha.shape = " + str(alpha.shape));
 beta = bwd_algo(A, B, V);
 print("Final HMM BWD State Probabilities:");
 print("beta.shape = " + str(beta.shape));
+print("\n");
 
-# ------------------------
-# Baum-Welch Algorithm
-# ------------------------
+# --------------------------------------------------
+# Baum-Welch Algorithm - Fwd/Bwd Latent Algorithm
+# --------------------------------------------------
 # Transition Probabilities
 A = np.ones((2, 2))
 A = A / np.sum(A, axis=1)
@@ -63,3 +66,11 @@ B = B / np.sum(B, axis=1).reshape((-1, 1))
 myAB = baum_welch(V, A, B, init_dist, n_iter=100);
 print("Baum Welch Algo:");
 print("myAB:");print(myAB);
+
+# ----------------------------------------------------
+# Viterbi Backtrack Algorithm - most probable states
+# ----------------------------------------------------
+predictedStates = viterbi(V, A, B, init_dist);
+print("Final predicted states:");
+print(predictedStates[200:210]);
+print("\n");

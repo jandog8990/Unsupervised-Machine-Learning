@@ -19,8 +19,8 @@ import numpy as np
 def baum_welch(V, A, B, init_dist, n_iter=100):
     T = V.shape[0]
     M = A.shape[0]
-    print("T = " + str(T));
-    print("M = " + str(M));
+#    print("T = " + str(T));
+#    print("M = " + str(M));
     
     for n in range(n_iter):
         alpha = fwd_algo(A, B, init_dist, V);
